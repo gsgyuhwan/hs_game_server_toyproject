@@ -5,3 +5,8 @@
 #pragma once
 
 #include "gtest/gtest.h"
+
+#include "CardInvariant.h"
+#include "CardType.h"
+#include "Match.h"
+#include "Move.h"
