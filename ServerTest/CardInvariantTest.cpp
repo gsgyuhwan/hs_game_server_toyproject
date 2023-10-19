@@ -23,6 +23,7 @@ TEST(MinionConstructorTest, CardInvariantTest) {
 	EXPECT_FALSE(m.function_features.when_played.has_value());
 	EXPECT_FALSE(m.function_features.when_drawed.has_value());
 	EXPECT_FALSE(m.function_features.after_drawed.has_value());
+	EXPECT_FALSE(m.function_features.after_destroyed.has_value());
 	EXPECT_FALSE(m.function_features.battlecry.has_value());
 	EXPECT_EQ(m.stat_features.default_cost, 0);
 	EXPECT_EQ(m.stat_features.default_attack, 1);
@@ -41,6 +42,7 @@ TEST(SpellConstructorTest, CardInvariantTest) {
 	EXPECT_TRUE(s.function_features.when_played.has_value());
 	EXPECT_FALSE(s.function_features.when_drawed.has_value());
 	EXPECT_FALSE(s.function_features.after_drawed.has_value());
+	EXPECT_FALSE(s.function_features.after_destroyed.has_value());
 	EXPECT_FALSE(s.function_features.battlecry.has_value());
 	EXPECT_EQ(s.stat_features.default_cost, 0);
 	EXPECT_EQ(s.stat_features.default_attack, 0);
@@ -58,6 +60,7 @@ TEST(WeaponConstructorTest, CardInvariantTest) {
 	EXPECT_FALSE(w.function_features.when_played.has_value());
 	EXPECT_FALSE(w.function_features.when_drawed.has_value());
 	EXPECT_FALSE(w.function_features.after_drawed.has_value());
+	EXPECT_FALSE(w.function_features.after_destroyed.has_value());
 	EXPECT_FALSE(w.function_features.battlecry.has_value());
 	EXPECT_EQ(w.stat_features.default_cost, 0);
 	EXPECT_EQ(w.stat_features.default_attack, 3);
