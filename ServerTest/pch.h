@@ -10,3 +10,4 @@
 #include "CardType.h"
 #include "Match.h"
 #include "Move.h"
+#include "CardInstance.h"
