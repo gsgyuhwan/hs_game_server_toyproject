@@ -72,29 +72,29 @@ struct Move
 	BinaryParam binary_param;
 	TernaryParam ternary_param;
 
-	int GetMyHandPos() // assert unary_param's value is MyHand1 ~ MyHand7
+	size_t GetMyHandPos() // assert unary_param's value is MyHand1 ~ MyHand7
 	{
-		return static_cast<int>(unary_param);
+		return static_cast<size_t>(unary_param);
 	}
 
-	template <typename T> int GetMyBoardPos(){};
-	template<> int GetMyBoardPos<BinaryParam>() // assert binary_param's value is MyBoard1 ~ MyBoard7
+	template <typename T> size_t GetMyBoardPos(){};
+	template<> size_t GetMyBoardPos<BinaryParam>() // assert binary_param's value is MyBoard1 ~ MyBoard7
 	{
-		return static_cast<int>(binary_param);
+		return static_cast<size_t>(binary_param);
 	}
-	template<> int GetMyBoardPos<TernaryParam>() // assert ternary__param's value is MyBoard1 ~ MyBoard7
+	template<> size_t GetMyBoardPos<TernaryParam>() // assert ternary__param's value is MyBoard1 ~ MyBoard7
 	{
-		return static_cast<int>(ternary_param);
+		return static_cast<size_t>(ternary_param);
 	}
 
-	template <typename T> int GetOpBoardPos() {};
-	template<> int GetOpBoardPos<BinaryParam>() // assert binary_param's value is OpBoard1 ~ OpBoard7
+	template <typename T> size_t GetOpBoardPos() {};
+	template<> size_t GetOpBoardPos<BinaryParam>() // assert binary_param's value is OpBoard1 ~ OpBoard7
 	{
-		return static_cast<int>(binary_param) >> 3;
+		return static_cast<size_t>(binary_param) >> 3;
 	}
-	template<> int GetOpBoardPos<TernaryParam>() // assert ternary__param's value is OpBoard1 ~ OpBoard7
+	template<> size_t GetOpBoardPos<TernaryParam>() // assert ternary__param's value is OpBoard1 ~ OpBoard7
 	{
-		return static_cast<int>(ternary_param) >> 3;
+		return static_cast<size_t>(ternary_param) >> 3;
 	}
 
 
