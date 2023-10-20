@@ -11,3 +11,4 @@
 #include "Match.h"
 #include "Move.h"
 #include "CardInstance.h"
+#include "Move.h"
