@@ -6,6 +6,8 @@ enum class MoveType
 	BinaryPlay,
 	TernaryPlay,
 	BinaryAttack,
+	HeroPower,
+	TurnEnd,
 };
 
 enum class UnaryParam
