@@ -10,19 +10,29 @@ enum class MoveType
 	TurnEnd,
 };
 
-enum class UnaryParam
+enum class FirstParam
 {
 	Self,
-	MyHand1 = 1,
-	MyHand2 = 2,
-	MyHand3 = 3,
-	MyHand4 = 4,
-	MyHand5 = 5,
-	MyHand6 = 6,
-	MyHand7 = 7,
+	MyBoard1 = 1,
+	MyBoard2 = 2,
+	MyBoard3 = 3,
+	MyBoard4 = 4,
+	MyBoard5 = 5,
+	MyBoard6 = 6,
+	MyBoard7 = 7,
+	MyHand1 = 1 << 3,
+	MyHand2 = 2 << 3,
+	MyHand3 = 3 << 3,
+	MyHand4 = 4 << 3,
+	MyHand5 = 5 << 3,
+	MyHand6 = 6 << 3,
+	MyHand7 = 7 << 3, 
+	MyHand8 = 8 << 3,
+	MyHand9 = 9 << 3,
+	MyHand10 = 10 << 3,
 };
 
-enum class BinaryParam
+enum class SecondParam
 {
 	Self,
 	Face,
@@ -45,7 +55,7 @@ enum class BinaryParam
 	Option2,
 };
 
-enum class TernaryParam
+enum class ThirdParam
 {
 	Self,
 	Face,
@@ -70,33 +80,37 @@ enum class TernaryParam
 struct Move 
 {
 	MoveType move_type;
-	UnaryParam unary_param;
-	BinaryParam binary_param;
-	TernaryParam ternary_param;
+	FirstParam first_param;
+	SecondParam second_param;
+	ThirdParam third_param;
 
-	size_t GetMyHandPos() // assert unary_param's value is MyHand1 ~ MyHand7
+	size_t GetMyHandPos() // assert unary_param's value is MyHand1 ~ MyHand10
 	{
-		return static_cast<size_t>(unary_param);
+		return static_cast<size_t>(first_param) >> 3;
 	}
 
 	template <typename T> size_t GetMyBoardPos(){};
-	template<> size_t GetMyBoardPos<BinaryParam>() // assert binary_param's value is MyBoard1 ~ MyBoard7
+	template<> size_t GetMyBoardPos<FirstParam>() // assert binary_param's value is MyBoard1 ~ MyBoard7
 	{
-		return static_cast<size_t>(binary_param);
+		return static_cast<size_t>(first_param);
 	}
-	template<> size_t GetMyBoardPos<TernaryParam>() // assert ternary__param's value is MyBoard1 ~ MyBoard7
+	template<> size_t GetMyBoardPos<SecondParam>() // assert binary_param's value is MyBoard1 ~ MyBoard7
 	{
-		return static_cast<size_t>(ternary_param);
+		return static_cast<size_t>(second_param);
+	}
+	template<> size_t GetMyBoardPos<ThirdParam>() // assert ternary__param's value is MyBoard1 ~ MyBoard7
+	{
+		return static_cast<size_t>(third_param);
 	}
 
 	template <typename T> size_t GetOpBoardPos() {};
-	template<> size_t GetOpBoardPos<BinaryParam>() // assert binary_param's value is OpBoard1 ~ OpBoard7
+	template<> size_t GetOpBoardPos<SecondParam>() // assert binary_param's value is OpBoard1 ~ OpBoard7
 	{
-		return static_cast<size_t>(binary_param) >> 3;
+		return static_cast<size_t>(second_param) >> 3;
 	}
-	template<> size_t GetOpBoardPos<TernaryParam>() // assert ternary__param's value is OpBoard1 ~ OpBoard7
+	template<> size_t GetOpBoardPos<ThirdParam>() // assert ternary__param's value is OpBoard1 ~ OpBoard7
 	{
-		return static_cast<size_t>(ternary_param) >> 3;
+		return static_cast<size_t>(third_param) >> 3;
 	}
 
 
