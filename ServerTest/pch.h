@@ -14,3 +14,4 @@
 #include "Move.h"
 #include "Player.h"
 #include "DatabaseManager.h"
+#include "AliasedTypes.h"
