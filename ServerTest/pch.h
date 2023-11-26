@@ -12,3 +12,5 @@
 #include "Move.h"
 #include "CardInstance.h"
 #include "Move.h"
+#include "Player.h"
+#include "DatabaseManager.h"
