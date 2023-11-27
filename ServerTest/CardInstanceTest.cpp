@@ -1,6 +1,6 @@
 #include "pch.h"
 
-TEST(DefaultConstructorTest, CardInstanceTest) {
+TEST(CardInstanceTest, DefaultConstructorTest) {
 	CardInstance c = CardInstance();
 	EXPECT_FALSE(c.death_rattle.has_value());
 	EXPECT_EQ(c.card_number, 0);

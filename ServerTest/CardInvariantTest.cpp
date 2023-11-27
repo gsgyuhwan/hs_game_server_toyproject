@@ -1,6 +1,6 @@
 #include "pch.h"
 
-TEST(DefaultConstructorTest, CardInvariantTest) {
+TEST(CardInvariantTest,DefaultConstructorTest) {
 	CardInvariant d = CardInvariant();
 	EXPECT_FALSE(d.function_features.after_played.has_value());
 	EXPECT_FALSE(d.function_features.when_played.has_value());
@@ -13,7 +13,7 @@ TEST(DefaultConstructorTest, CardInvariantTest) {
 	EXPECT_EQ(d.card_type, CardType::minion);
 }
 
-TEST(MinionConstructorTest, CardInvariantTest) {
+TEST(CardInvariantTest, MinionConstructorTest) {
 	function_features_t ff;
 	stat_features_t sf;
 	sf.default_attack = 1;
@@ -31,7 +31,7 @@ TEST(MinionConstructorTest, CardInvariantTest) {
 	EXPECT_EQ(m.card_type, CardType::minion);
 }
 
-TEST(SpellConstructorTest, CardInvariantTest) {
+TEST(CardInvariantTest, SpellConstructorTest) {
 	function_features_t ff;
 	ff.when_played =
 		[](Match& match, Move& move) mutable {
@@ -50,7 +50,7 @@ TEST(SpellConstructorTest, CardInvariantTest) {
 	EXPECT_EQ(s.card_type, CardType::spell);
 }
 
-TEST(WeaponConstructorTest, CardInvariantTest) {
+TEST(CardInvariantTest, WeaponConstructorTest) {
 	function_features_t ff;
 	stat_features_t sf;
 	sf.default_attack = 3;
