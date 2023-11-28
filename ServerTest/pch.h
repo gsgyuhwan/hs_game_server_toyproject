@@ -15,3 +15,5 @@
 #include "Player.h"
 #include "DatabaseManager.h"
 #include "AliasedTypes.h"
+#include "Session.h"
+#include "Board.h"
