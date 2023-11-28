@@ -8,6 +8,7 @@ enum class MoveType
 	BinaryAttack,
 	HeroPower,
 	TurnEnd,
+	Surrender,
 };
 
 enum class FirstParam
@@ -113,6 +114,26 @@ struct Move
 		return static_cast<size_t>(third_param) >> 3;
 	}
 
+	template <typename T> bool IsMyBoard() {};
+	template<> bool IsMyBoard<FirstParam>() 
+	{
+		return first_param >= FirstParam::MyBoard1 && first_param <= FirstParam::MyBoard7;
+	}
+	template<> bool IsMyBoard<SecondParam>() 
+	{
+		return second_param >= SecondParam::MyBoard1 && second_param <= SecondParam::MyBoard7;
+	}
 
+	template <typename T> bool IsMyHand() {};
+	template<> bool IsMyHand<FirstParam>() 
+	{
+		return first_param >= FirstParam::MyHand1 && first_param <= FirstParam::MyHand10;
+	}
+
+	template <typename T> bool IsOption() {};
+	template<> bool IsOption<SecondParam>() 
+	{
+		return second_param >= SecondParam::Option1 && second_param <= SecondParam::Option2;
+	}
 };
 
