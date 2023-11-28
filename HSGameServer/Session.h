@@ -16,7 +16,6 @@ public:
     void ReadMove();
 
 private:
-
     boost::asio::ip::tcp::socket socket_;
     Move read_move;
     std::array<char, BUF_SIZE> buf_;

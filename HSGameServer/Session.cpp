@@ -24,11 +24,11 @@ void Session::SendBoardState(BoardState boardstate)
         {
             if (!ec)
             {
-                ReadMove();
+
             }
             else
             {
-                match_.EndMatch();
+                GameServer::Instance().EndMatch(match_->shared_from_this());
             }
         });
 }
@@ -39,14 +39,14 @@ void Session::ReadMove()
         boost::asio::buffer(buf_.data(), sizeof(Move)),
         [this](boost::system::error_code ec, std::size_t)
         {
-            if (!ec )
+            if (!ec)
             {
                 memcpy(&read_move, buf_.data(), sizeof(BoardState));
-                match_.PlayMove(read_move);
+                match_->PlayMove(read_move);
             }
             else
             {
-                match_.EndMatch();
+                GameServer::Instance().EndMatch(match_->shared_from_this());
             }
         });
 }
