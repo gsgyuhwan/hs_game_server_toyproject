@@ -14,13 +14,15 @@ struct function_features_t
 	std::optional<std::function<void(Match&, Move&)>> after_played;
 	std::optional<std::function<void(Match&, Move&)>> after_destroyed;
 	std::optional<std::function<void(Match&, Move&)>> battlecry;
+	std::optional<std::function<void(Match&, Move&)>> death_rattle;
 	function_features_t() :
 		when_drawed(),
 		after_drawed(),
 		when_played(),
 		after_played(),
 		after_destroyed(),
-		battlecry()
+		battlecry(),
+		death_rattle()
 	{}
 };
 
