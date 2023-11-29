@@ -24,6 +24,7 @@ private:
 	void BinaryPlay(Move& move);
 	void TernaryPlay(Move& move);
 	void MinionAttack(size_t pos1, size_t po2);
+
 	std::array<std::unique_ptr<Session>, 2> sessions_;
 	std::array<std::unique_ptr<Board>, 2> boards_;
 	std::array<std::unique_ptr<Player>, 2> players_;
