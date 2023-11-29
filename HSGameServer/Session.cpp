@@ -1,12 +1,14 @@
 #pragma once
 #include "Session.h"
-#include <cstring>
 
-Session::Session(boost::asio::ip::tcp::socket socket)
-	: socket_(std::move(socket)),
-	read_move(),
-    buf_()
+
+Session::Session(boost::asio::ip::tcp::socket socket, std::unordered_set<std::shared_ptr<Match>>& match_set)
+    : socket_(std::move(socket)),
+    read_move(),
+    buf_(),
+    match_set_(match_set)
 {
+    user_id_ = DatabaseManager::Instance().GetUserID(socket.remote_endpoint().address().to_string());
 }
 
 Move Session::GetMove() const
@@ -28,7 +30,7 @@ void Session::SendBoardState(BoardState boardstate)
             }
             else
             {
-                GameServer::Instance().EndMatch(match_->shared_from_this());
+                match_set_.erase(match_->shared_from_this());
             }
         });
 }
@@ -46,7 +48,7 @@ void Session::ReadMove()
             }
             else
             {
-                GameServer::Instance().EndMatch(match_->shared_from_this());
+                match_set_.erase(match_->shared_from_this());
             }
         });
 }
