@@ -1,15 +1,18 @@
 #pragma once
 #include "Match.h"
 
-Match::Match(std::unique_ptr<Session> session1, std::unique_ptr<Session> session2) :
-	turn_()
+Match::Match(std::unique_ptr<Session> session1, std::unique_ptr<Session> session2, std::unordered_set<std::shared_ptr<Match>>& match_set) :
+	turn_(),
+	match_set_(match_set)
 {
 	sessions_[0] = std::move(session1);
 	sessions_[1] = std::move(session2);
 	boards_[0] = std::make_unique<Board>();
 	boards_[1] = std::make_unique<Board>();
-	players_[0] = std::make_unique<Player>();
-	players_[1] = std::make_unique<Player>();
+	players_[0] = std::make_unique<Player>(session1.get()->GetUserID());
+	players_[1] = std::make_unique<Player>(session1.get()->GetUserID());
+
+	StartMatch();
 }
 
 void Match::PlayMove(Move& move)
@@ -25,7 +28,7 @@ void Match::PlayMove(Move& move)
 	}
 	case MoveType::Surrender:
 	{
-		GameServer::Instance().EndMatch(shared_from_this());
+		match_set_.erase(shared_from_this());
 		break;
 	}
 	case MoveType::HeroPower:
